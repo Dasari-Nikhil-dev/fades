@@ -5,6 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- ✅ Add this Toolbar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/holo_blue_dark"
+        app:titleTextColor="@android:color/white"
+        app:layout_scrollFlags="scroll|enterAlways"/>
+
     <!-- NavHostFragment to host fragments -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment_activity_main"
@@ -21,4 +30,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:menu="@menu/bottom_nav_menu" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -26,12 +26,12 @@ class FeedFragment : androidx.fragment.app.Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         val feed = arguments?.getString("type")
-        val rootView =  inflater.inflate(R.layout.fragment_feed, container, false)
-        feed?.let {
+        val rootView = inflater.inflate(R.layout.fragment_feed,container,false)
+        feed.let {
             rootView.findViewById<TextView>(R.id.feed_text).text = it
         }
         return rootView
-       /* return inflater.inflate(R.layout.fragment_feed, container, false)*/
     }
 }
