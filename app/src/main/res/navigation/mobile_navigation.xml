@@ -4,8 +4,6 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@id/navigation_hot">
 
-    <!--app:startDestination="@id/navigation_hot"-->
-
     <fragment
         android:id="@+id/navigation_hot"
         android:name="com.example.fades.ui.theme.feed.FeedFragment"
@@ -13,7 +11,7 @@
         <argument
             android:name="type"
             app:argType="string"
-            android:defaultValue="hot"/>
+            android:defaultValue="Hot"/>
     </fragment>
 
     <fragment
@@ -23,7 +21,7 @@
         <argument
             android:name="type"
             app:argType="string"
-            android:defaultValue="top"/>
+            android:defaultValue="Top"/>
     </fragment>
 
 </navigation>
