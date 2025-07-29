@@ -14,11 +14,16 @@ kotlin {
 }
 dependencies {
 
-    implementation(libs.retrofit)
+    api(libs.retrofit)
     implementation(libs.converter.moshi)
     implementation(libs.moshi)
     // Unit testing
     testImplementation(libs.junit)
+
+
     kapt(libs.moshi.kotlin.codegen)
+
+    // coroutines for api calls
+    implementation(libs.kotlinx.coroutines.core)
 
 }

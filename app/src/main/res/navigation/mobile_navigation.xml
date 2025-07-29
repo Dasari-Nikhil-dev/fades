@@ -11,7 +11,7 @@
         <argument
             android:name="type"
             app:argType="string"
-            android:defaultValue="Hot"/>
+            android:defaultValue="hot"/>
     </fragment>
 
     <fragment
@@ -21,7 +21,7 @@
         <argument
             android:name="type"
             app:argType="string"
-            android:defaultValue="Top"/>
+            android:defaultValue="top"/>
     </fragment>
 
 </navigation>
