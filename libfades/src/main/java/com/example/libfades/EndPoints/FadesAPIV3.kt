@@ -2,15 +2,21 @@ package com.example.libfades.EndPoints
 
 import com.example.libfades.models.GalleryResponse
 import com.example.libfades.models.TagsResponse
+import com.example.libfades.params.Section
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface FadesAPIV3 {
 
     @GET("tags")
-    fun getTagResponse() : Call<TagsResponse>
+    suspend fun getTagResponse() : Response<TagsResponse>
 
-    @GET("gallery/hot?album_previews=true")   // TODO use Path Params
-    fun getGalleryResponse() : Call<GalleryResponse>
+    @GET("gallery/{section}")   // TODO use Path Params
+    suspend fun getGalleryResponse(
+        @Path("section") section: Section,
+        @Query("album-previews") albumPreviews: Boolean = true
+    ) : Response<GalleryResponse>
 }

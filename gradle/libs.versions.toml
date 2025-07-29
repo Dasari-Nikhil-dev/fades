@@ -21,6 +21,7 @@ fragmentKtx = "1.8.0"
 navigationKtx = "2.9.0"
 material = "1.12.0"
 safeargs = "2.7.7"
+kotlinxCoroutinesCore = "1.10.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -50,6 +51,8 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationKtx" }
 androidx-navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationKtx" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesCore" }
 
 
 [plugins]

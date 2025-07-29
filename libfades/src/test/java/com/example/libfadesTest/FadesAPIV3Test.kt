@@ -1,42 +1,30 @@
 package com.example.libfadesTest
 
-import com.example.libfades.EndPoints.FadesAPIV3
-import okhttp3.OkHttpClient
+import com.example.libfades.FadesClient
+import com.example.libfades.params.Section
+import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertNotNull
 import org.junit.Test
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 
 class FadesAPIV3Test {
 
-
-    private val okkHttpClient =  OkHttpClient.Builder()
-        .addInterceptor{
-            val request = it.request().newBuilder()
-                .addHeader("Authorization", "Client-ID 16abb74c6e5c7e8")
-                .build()
-            it.proceed(request)
-        }
-        .build()
-
-
-    private val retrofit = Retrofit.Builder()
-        .client(okkHttpClient)
-        .addConverterFactory(MoshiConverterFactory.create())
-        .baseUrl("https://api.imgur.com/3/")
-        .build()
-
-    val api  = retrofit.create(FadesAPIV3::class.java)
+    val api = FadesClient.api
 
     @Test
-    fun isTagResponseWorking() {
-        val response = api.getTagResponse().execute()
+    fun isTagResponseWorking() = runBlocking {
+        val response = api.getTagResponse()
         assertNotNull(response.body())
     }
 
     @Test
-    fun isGalleryResponseWorking() {
-        val response = api.getGalleryResponse().execute()
+    fun isGalleriesHotWorking() = runBlocking {
+        val response = api.getGalleryResponse(Section.HOT)
+        assertNotNull(response.body())
+    }
+
+    @Test
+    fun isGalleriesTopworking() = runBlocking {
+        val response = api.getGalleryResponse(Section.TOP)
         assertNotNull(response.body())
     }
 
