@@ -55,6 +55,12 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.recyclerView)
+
+    //Coil Library for Image Loading
+    implementation(libs.coil.core)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
 
     // navigation
     implementation(libs.androidx.navigation.compose)

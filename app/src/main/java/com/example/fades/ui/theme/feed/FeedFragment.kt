@@ -5,8 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import com.example.fades.R
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.fades.databinding.FragmentFeedBinding
 
 class FeedFragment : androidx.fragment.app.Fragment() {
 
@@ -15,6 +16,7 @@ class FeedFragment : androidx.fragment.app.Fragment() {
     }
 
     private val viewModel: FeedViewModel by viewModels()
+    private  val feedAdapter = FeedRecyclerAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +33,15 @@ class FeedFragment : androidx.fragment.app.Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val rootView = inflater.inflate(R.layout.fragment_feed,container,false)
-        return rootView
+        val binding = FragmentFeedBinding.inflate(inflater,container,false)
+        binding.feedRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.feedRecyclerView.adapter = feedAdapter
+
+        viewModel.feed.observe(viewLifecycleOwner) {
+            feedAdapter.submitList(it)
+            /*Toast.makeText(requireContext(),"Downloaded ${it.size} images ",Toast.LENGTH_SHORT).show()*/
+        }
+
+        return binding.root
     }
 }
