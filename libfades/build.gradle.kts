@@ -1,7 +1,7 @@
 plugins {
     id("java-library")
     alias(libs.plugins.jetbrains.kotlin.jvm)
-    id ("kotlin-kapt")
+    alias(libs.plugins.ksp)
 }
 java {
     sourceCompatibility = JavaVersion.VERSION_11
@@ -17,13 +17,15 @@ dependencies {
     api(libs.retrofit)
     implementation(libs.converter.moshi)
     implementation(libs.moshi)
+
     // Unit testing
     testImplementation(libs.junit)
 
-
-    kapt(libs.moshi.kotlin.codegen)
-
     // coroutines for api calls
     implementation(libs.kotlinx.coroutines.core)
+
+    // New
+    ksp(libs.moshi.kotlin.codegen)
+
 
 }

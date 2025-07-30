@@ -3,11 +3,4 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="11" />
   </component>
-  <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Fades.libfades" options="-proc:none" />
-      <module name="Fades.libfades.main" options="-proc:none" />
-      <module name="Fades.libfades.test" options="-proc:none" />
-    </option>
-  </component>
 </project>
