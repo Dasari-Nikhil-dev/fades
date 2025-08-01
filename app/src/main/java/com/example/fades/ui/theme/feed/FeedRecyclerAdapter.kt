@@ -1,8 +1,9 @@
 package com.example.fades.ui.theme.feed
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -15,22 +16,23 @@ import com.example.fades.databinding.ListItemGalleryImageBinding
 import com.example.libfades.models.Image
 
 class FeedRecyclerAdapter() :
-    ListAdapter<Image, FeedRecyclerAdapter.MyViewHolder>(FeedDiffCallBack()) {
+    ListAdapter<Image, FeedRecyclerAdapter.FeedViewHolder>(FeedDiffCallBack()) {
 
-    class  MyViewHolder(val binding: ListItemGalleryImageBinding) :
-        RecyclerView.ViewHolder(binding.root)
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val inflater: LayoutInflater = parent.context.getSystemService(LayoutInflater::class.java)
-        val binding = ListItemGalleryImageBinding.inflate(inflater,parent,false)
-        return  MyViewHolder(binding)
+    class FeedViewHolder(itemView: ListItemGalleryImageBinding) :
+        RecyclerView.ViewHolder(itemView.root){
+        val textview : TextView = itemView.ItemTextView
+        val imageView : ImageView = itemView.ItemImageView
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeedViewHolder {
+        val inflater: LayoutInflater = parent.context.getSystemService(LayoutInflater::class.java)
+        val binding = ListItemGalleryImageBinding.inflate(inflater,parent,false)
+        return  FeedViewHolder(binding)
+    }
 
-    private class  FeedDiffCallBack(): DiffUtil.ItemCallback<Image>() {
-        @SuppressLint("DiffUtilEquals")
+    private class FeedDiffCallBack: DiffUtil.ItemCallback<Image>() {
         override fun areContentsTheSame(oldItem: Image, newItem: Image): Boolean {
-            return oldItem === newItem
+           return oldItem == newItem
         }
 
         override fun areItemsTheSame(oldItem: Image, newItem: Image): Boolean {
@@ -38,16 +40,12 @@ class FeedRecyclerAdapter() :
         }
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val image = getItem(position)
-        holder.binding.ItemTextView.text = image.title
-
-        val cover = image.cover
-        val imgUrl = "https://i.imgur.com/${cover}.jpg"
-
-        holder.binding.ItemImageView.load(imgUrl) {
+    override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
+       val image = getItem(position)
+        holder.textview.text = image.title
+        holder.imageView.load("https://i.imgur.com/${image.cover}.jpg") {
             crossfade(true)
-            placeholder(R.drawable.placeholder_image) // <-- You must provide a placeholder drawable
+            placeholder(R.drawable.placeholder_image)
             error(R.drawable.placeholder_image)
         }
     }

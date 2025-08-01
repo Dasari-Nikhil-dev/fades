@@ -1,18 +1,23 @@
 package com.example.fades
 
 import android.os.Bundle
-import android.view.LayoutInflater
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.fades.databinding.ActivityMainBinding
+import com.example.fades.ui.theme.stories.StoriesRecyclerAdapter
+import com.example.fades.ui.theme.stories.StoriesViewModel
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    private val storiesViewModel by viewModels<StoriesViewModel>()
+    private val storiesAdapter = StoriesRecyclerAdapter()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,21 +27,43 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 2️⃣ Set up toolbar as support ActionBar
-        setSupportActionBar(binding.toolbar)
+        setUpNav()
 
+        binding.storiesRecyclerView.apply {
+            layoutManager = LinearLayoutManager(context,RecyclerView.HORIZONTAL,false)
+            adapter = storiesAdapter
+        }
 
+        storiesViewModel.updateTags()
+
+    }
+
+    fun setUpNav() {
         // 2️⃣ Find the NavHostFragment and get its NavController
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
         val navController = navHostFragment.navController
 
-        // 4️⃣ AppBarConfiguration with top-level destinations
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.navigation_hot, R.id.navigation_top))
+        /*  Not using an Action bar in our app Now
+        ------------Action Bar Code-------------------
+           // 2️⃣ Set up toolbar as support ActionBar
+          setSupportActionBar(binding.toolbar)
 
-        setupActionBarWithNavController(navController, appBarConfiguration)
+        // 4️⃣ AppBarConfiguration with top-level destinations
+          val appBarConfiguration = AppBarConfiguration(setOf(R.id.navigation_hot, R.id.navigation_top))
+          setupActionBarWithNavController(navController, appBarConfiguration)
+          ------------Action Bar Code-------------------
+          */
+
 
         // 3️⃣ Hook up your BottomNavigationView
         binding.bottomNav.setupWithNavController(navController)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        storiesViewModel.tags.observe(this) {
+            storiesAdapter.submitList(it)
+        }
     }
 }
