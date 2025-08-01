@@ -21,7 +21,7 @@ class FeedFragment : androidx.fragment.app.Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val feed = arguments?.getString("type")
+        val feed = arguments?.getString("type") // TODO move to Enum
         feed?.let {
             viewModel.updateFeed(it)
         }
