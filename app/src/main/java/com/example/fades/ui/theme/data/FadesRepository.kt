@@ -1,11 +1,8 @@
 package com.example.fades.ui.theme.data
 
 import com.example.libfades.FadesClient
-import com.example.libfades.models.Gallery
-import com.example.libfades.models.GalleryResponse
 import com.example.libfades.models.Image
 import com.example.libfades.models.Tag
-import com.example.libfades.models.TagsResponse
 import com.example.libfades.params.Section
 
 class FadesRepository {
@@ -22,9 +19,14 @@ class FadesRepository {
         return response.body()?.data
     }
 
-    suspend fun getTagResponse(): List<Tag>? {
-        val response = api.getTagResponse()
+    suspend fun getTagsResponse(): List<Tag>? {
+        val response = api.getTagsResponse()
         return response.body()?.data?.tags
+    }
+
+    suspend fun  getTagsGallery(tagName: String): List<Image>? {
+        val response = api.getTagGallery(tagName)
+        return response.body()?.data?.items
     }
 
 }

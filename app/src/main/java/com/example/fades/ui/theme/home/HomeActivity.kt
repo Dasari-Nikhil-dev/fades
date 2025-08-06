@@ -1,4 +1,4 @@
-package com.example.fades
+package com.example.fades.ui.theme.home
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -7,16 +7,15 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.fades.R
 import com.example.fades.databinding.ActivityMainBinding
-import com.example.fades.ui.theme.stories.StoriesRecyclerAdapter
-import com.example.fades.ui.theme.stories.StoriesViewModel
 
 
-class MainActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val storiesViewModel by viewModels<StoriesViewModel>()
+    private val storiesViewModel by viewModels<HomeViewModel>()
     private val storiesAdapter = StoriesRecyclerAdapter()
 
 
@@ -34,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             adapter = storiesAdapter
         }
 
-        storiesViewModel.updateTags()
+        storiesViewModel.fetchTags()
 
     }
 

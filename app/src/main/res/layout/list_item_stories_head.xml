@@ -16,11 +16,12 @@
         app:cardCornerRadius="30dp">
 
         <ImageView
-            android:scaleType="centerCrop"
             android:id="@+id/storiesHeadImageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:background="@color/black" />
+            android:scaleType="centerCrop"
+            android:background="@android:color/darker_gray"
+            />
 
     </androidx.cardview.widget.CardView>
 

@@ -70,6 +70,9 @@ dependencies {
 
     // using lib fades for api calls
     implementation(project(":libfades"))
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.constraintlayout)
 
     // Unit testing
     testImplementation(libs.junit)
