@@ -1,5 +1,6 @@
-package com.example.fades.ui.theme.stories
+package com.example.fades.ui.theme.home
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -9,11 +10,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil3.load
 import com.example.fades.databinding.ListItemStoriesHeadBinding
+import com.example.fades.ui.theme.story.StoryActivity
 import com.example.libfades.models.Tag
 
 class StoriesRecyclerAdapter: ListAdapter<Tag,StoriesRecyclerAdapter.StoriesViewHolder>(StoriesDiffCallBack()) {
 
-    class StoriesViewHolder(storiesView: ListItemStoriesHeadBinding) : RecyclerView.ViewHolder(storiesView.root){
+    class StoriesViewHolder(val storiesView: ListItemStoriesHeadBinding) : RecyclerView.ViewHolder(storiesView.root){
         val imageView :ImageView = storiesView.storiesHeadImageView
         val textView : TextView = storiesView.storiesHeadTextView
     }
@@ -39,5 +41,14 @@ class StoriesRecyclerAdapter: ListAdapter<Tag,StoriesRecyclerAdapter.StoriesView
         val tag = getItem(position)
         holder.textView.text = tag.displayName
         holder.imageView.load("https://i.imgur.com/${tag.backgroundHash}.jpg")
+        holder.storiesView.root.apply {
+            setOnClickListener {
+                context.startActivity(
+                    Intent(context,StoryActivity::class.java).apply {
+                        putExtra("tag",tag.name)
+                    }
+                )
+            }
+        }
     }
 }

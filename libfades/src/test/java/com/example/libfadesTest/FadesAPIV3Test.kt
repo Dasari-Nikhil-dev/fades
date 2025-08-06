@@ -11,8 +11,8 @@ class FadesAPIV3Test {
     val api = FadesClient.api
 
     @Test
-    fun isTagResponseWorking() = runBlocking {
-        val response = api.getTagResponse()
+    fun isTagsResponseWorking() = runBlocking {
+        val response = api.getTagsResponse()
         assertNotNull(response.body())
     }
 
@@ -25,6 +25,12 @@ class FadesAPIV3Test {
     @Test
     fun isGalleriesTopworking() = runBlocking {
         val response = api.getGalleryResponse(Section.TOP)
+        assertNotNull(response.body())
+    }
+
+    @Test
+    fun isTagGalleryWorking() = runBlocking {
+        val response = api.getTagGallery("aww")
         assertNotNull(response.body())
     }
 

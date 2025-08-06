@@ -1,4 +1,4 @@
-package com.example.fades.ui.theme.stories
+package com.example.fades.ui.theme.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,14 +9,14 @@ import com.example.libfades.models.Tag
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class StoriesViewModel: ViewModel() {
+class HomeViewModel: ViewModel() {
     private  val repo = FadesRepository()
 
     private val _tags = MutableLiveData<List<Tag>>()
     val tags: LiveData<List<Tag>> = _tags
 
-    fun updateTags() = viewModelScope.launch(Dispatchers.IO){
-            _tags.postValue(repo.getTagResponse())
+    fun fetchTags() = viewModelScope.launch(Dispatchers.IO){
+            _tags.postValue(repo.getTagsResponse())
         }
 
 }

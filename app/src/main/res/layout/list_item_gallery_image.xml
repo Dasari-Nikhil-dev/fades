@@ -27,6 +27,7 @@
             />
 
         <TextView
+            android:gravity="center"
             android:id="@+id/ItemTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
