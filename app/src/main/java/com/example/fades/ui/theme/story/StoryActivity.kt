@@ -31,17 +31,17 @@ class StoryActivity : AppCompatActivity() {
             storyViewModel.fetchTagsGallery(it)
         }
         binding.storyViewPager.adapter = storyAdapter
-       autoScrollRunnable = object  : Runnable {
-           override fun run() {
-               val totalItems = storyAdapter.itemCount
-               if (totalItems > 0) {
-                   currentPage = (currentPage + 1) % totalItems
-                   binding.storyViewPager.setCurrentItem(currentPage, true)
-                   autoScrollHandler.postDelayed(this, 5000)
-               }
-           }
+        autoScrollRunnable = object  : Runnable {
+            override fun run() {
+                val totalItems = storyAdapter.itemCount
+                if (totalItems > 0) {
+                    currentPage = (currentPage + 1) % totalItems
+                    binding.storyViewPager.setCurrentItem(currentPage, true)
+                    autoScrollHandler.postDelayed(this, 5000)
+                }
+            }
 
-       }
+        }
     }
 
     override fun onResume() {
