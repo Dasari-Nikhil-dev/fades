@@ -61,6 +61,8 @@ dependencies {
     implementation(libs.coil.core)
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
+    implementation(libs.coil.gif)
+    implementation(libs.coil.video)
 
     // navigation
     implementation(libs.androidx.navigation.compose)

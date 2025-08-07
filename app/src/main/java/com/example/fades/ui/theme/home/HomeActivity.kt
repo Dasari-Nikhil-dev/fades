@@ -7,6 +7,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil3.imageLoader
+import coil3.request.ImageRequest
 import com.example.fades.R
 import com.example.fades.databinding.ActivityMainBinding
 
@@ -62,6 +64,14 @@ class HomeActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         storiesViewModel.tags.observe(this) {
+            it.forEach { tag ->
+                val url = "https://i.imgur.com/${tag.backgroundHash}.jpg"
+                val request = ImageRequest.Builder(this)
+                    .data(url)
+                    .size(60,60)
+                    .build()
+                imageLoader.enqueue(request)
+            }
             storiesAdapter.submitList(it)
         }
     }
