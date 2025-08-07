@@ -55,5 +55,3 @@ Each tab shows:
 - **Coil** for image loading
 - **Navigation Component**
 - **ViewPager2** for story viewer
-
----
